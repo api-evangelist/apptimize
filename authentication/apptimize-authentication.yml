@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/apptimize-rest-api-openapi.yml
+docs: https://apptimize.com/docs/apis/rest-api.html
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  notes: >-
+    The REST API authenticates with an Apptimize API Token supplied in the
+    ApptimizeApiToken request header, obtained from the dashboard Install page.
+    This is distinct from the App Key used to initialize the client/server SDKs.
+    No OAuth or OpenID Connect surface is documented.
+schemes:
+- name: ApptimizeApiToken
+  type: apiKey
+  in: header
+  parameter: ApptimizeApiToken
+  description: Apptimize API Token from the dashboard Install page. Distinct from the App Key
+    used with the SDKs.
+  sources:
+  - openapi/apptimize-rest-api-openapi.yml
