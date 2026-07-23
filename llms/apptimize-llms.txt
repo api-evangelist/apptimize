@@ -1,0 +1,31 @@
+# Apptimize
+
+> Mobile-first A/B testing, multivariate testing, and feature management platform. Run experiments, ship feature flags with controlled rollouts, deliver instant updates without app-store releases, and set dynamic variables on the fly across iOS, Android, web, and server-side channels. Apptimize was acquired by Airship in 2019; its developer docs and SDKs remain published at apptimize.com/docs.
+
+## APIs
+- [Apptimize REST API](https://apptimize.com/docs/apis/rest-api.html): Retrieve variant assignments (code blocks, dynamic variables, feature flags, variant info) and track user events from any device or server. Hosts: https://api.apptimize.com (NA), https://api.apptimize.eu (EU). Auth: ApptimizeApiToken header.
+
+## Specs
+- [OpenAPI (REST API)](openapi/apptimize-rest-api-openapi.yml)
+- [OpenAPI Overlay](overlays/apptimize-rest-api-overlay.yaml)
+
+## Artifacts
+- [Authentication](authentication/apptimize-authentication.yml)
+- [Conventions](conventions/apptimize-conventions.yml)
+- [Error catalog](errors/apptimize-problem-types.yml)
+- [Lifecycle](lifecycle/apptimize-lifecycle.yml)
+- [Data model](data-model/apptimize-data-model.yml)
+- [Conformance](conformance/apptimize-conformance.yml)
+- [Packages / SDKs](packages/apptimize-packages.yml)
+- [MCP server (candidate)](mcp/apptimize-mcp.yml)
+- [Agent skills](skills/_index.yml)
+
+## SDKs
+- npm: @apptimize/apptimize-web-sdk, @apptimize/apptimize-server-sdk, @apptimize/apptimize-client-sdk
+- PyPI: apptimize (Python Server SDK)
+- CocoaPods: Apptimize (iOS/tvOS/watchOS)
+- Also documented: Android, Web, React Native, Flutter, Roku
+
+## Docs
+- [Documentation](https://apptimize.com/docs/)
+- [REST API reference](https://apptimize.com/docs/apis/rest-api.html)

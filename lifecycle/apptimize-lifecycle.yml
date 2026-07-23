@@ -1,0 +1,22 @@
+generated: '2026-07-18'
+method: searched
+source: https://apptimize.com/docs/apis/rest-api.html
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://apptimize.com/docs/apis/rest-api.html
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation policy or Sunset/Deprecation header support.
+sla:
+  url: null
+status_page: null
+ownership:
+  acquired_by: Airship
+  acquired_year: 2019
+  notes: >-
+    Apptimize was acquired by Airship in 2019. The developer documentation and
+    SDKs remain published at apptimize.com/docs; the marketing site redirects to
+    airship.com. No public status page (status.apptimize.com does not resolve).
+deprecated_operations: []

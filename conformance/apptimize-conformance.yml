@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/apptimize-rest-api-openapi.yml
+standards:
+  - id: rest
+    conforms: true
+    evidence: Resource-oriented HTTP JSON API over versioned URI paths.
+  - id: api-key-auth
+    conforms: true
+    evidence: apiKey security scheme in the ApptimizeApiToken header.
+  - id: oauth2
+    conforms: false
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors return a plain JSON message body, not application/problem+json.
+  - id: json-api
+    conforms: false
+  - id: pagination
+    conforms: false
+    evidence: Per-user single-resource lookups; no list pagination.
+  - id: idempotency
+    conforms: false
+    evidence: No documented idempotency-key contract.
+  - id: webhooks
+    conforms: false
+    evidence: No webhook or event-streaming surface documented.

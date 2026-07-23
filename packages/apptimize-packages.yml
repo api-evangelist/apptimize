@@ -1,0 +1,61 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  npm @apptimize scope, PyPI, CocoaPods trunk; Apptimize SDK documentation at
+  https://apptimize.com/docs/
+packages:
+  - language: javascript
+    registry: npm
+    name: "@apptimize/apptimize-web-sdk"
+    url: https://www.npmjs.com/package/@apptimize/apptimize-web-sdk
+    install: npm install @apptimize/apptimize-web-sdk
+    version: 1.2.44
+    description: Apptimize Client SDK for Web.
+    official: true
+  - language: javascript
+    registry: npm
+    name: "@apptimize/apptimize-server-sdk"
+    url: https://www.npmjs.com/package/@apptimize/apptimize-server-sdk
+    install: npm install @apptimize/apptimize-server-sdk
+    version: 1.2.44
+    description: Apptimize Server SDK for Node.js.
+    official: true
+  - language: javascript
+    registry: npm
+    name: "@apptimize/apptimize-client-sdk"
+    url: https://www.npmjs.com/package/@apptimize/apptimize-client-sdk
+    install: npm install @apptimize/apptimize-client-sdk
+    version: 1.2.44
+    description: Apptimize Client SDK for React Native.
+    official: true
+  - language: javascript
+    registry: npm
+    name: react-native-apptimize
+    url: https://www.npmjs.com/package/react-native-apptimize
+    install: npm install react-native-apptimize
+    version: 0.1.16
+    description: Apptimize React Native SDK (legacy).
+    official: true
+  - language: python
+    registry: pypi
+    name: apptimize
+    url: https://pypi.org/project/apptimize/
+    install: pip install apptimize
+    version: 1.2.44
+    description: Apptimize Python Server SDK (author "Apptimize, Inc.").
+    official: true
+  - language: swift
+    registry: cocoapods
+    name: Apptimize
+    url: https://cocoapods.org/pods/Apptimize
+    install: "pod 'Apptimize'"
+    version: 3.6.7
+    description: Apptimize iOS/tvOS/watchOS SDK (218 published versions).
+    official: true
+notes: >-
+  Android, JavaScript, Flutter and Roku SDKs are also documented at
+  apptimize.com/docs/ (SDK Download and Documentation). The Android SDK is
+  distributed via Apptimize's own artifact channel rather than a confirmed Maven
+  Central coordinate, so it is not listed here to avoid recording an unverified
+  package id. Apptimize was acquired by Airship in 2019; these registry packages
+  remain published and first-party.

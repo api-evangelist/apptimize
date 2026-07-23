@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: Apptimize REST Events API
+  version: v1
+  description: The Apptimize REST API lets any device or server participate in Apptimize A/B experiments and feature flags without an embedded SDK. The Experiments endpoints retrieve variant assignments (code blocks, dynamic variables, feature flags, and full variant info) for a given user, and the Events endpoint tracks user events used as experiment goals. Authentication uses an Apptimize API Token supplied in the ApptimizeApiToken header; this token is obtained from the Apptimize dashboard Install page and is distinct from the App Key used with the client/server SDKs.
+  contact:
+    name: Apptimize Support
+    email: support@apptimize.com
+    url: https://apptimize.com/docs/apis/rest-api.html
+  x-apptimize-status: Apptimize was acquired by Airship in 2019; the developer documentation and SDKs remain published at apptimize.com/docs.
+servers:
+- url: https://api.apptimize.com
+  description: North America
+- url: https://api.apptimize.eu
+  description: Europe
+security:
+- ApptimizeApiToken: []
+tags:
+- name: Events
+  description: Track user events used as experiment and feature-flag goals.
+paths:
+  /v1/users/{user-id}/events/{event-name}:
+    post:
+      operationId: trackEvent
+      summary: Track an event for a user
+      description: Records a named event for the given user. Events are used as goals for experiments and feature flags. Returns 204 No Content on success.
+      tags:
+      - Events
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - name: event-name
+        in: path
+        required: true
+        description: The name of the event to record.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/CustomAttributes'
+      requestBody:
+        required: false
+        description: Optional event value and custom attributes as form fields.
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: number
+                  description: Optional numeric value associated with the event.
+                attributes:
+                  type: string
+                  description: JSON object of custom user attributes.
+      responses:
+        '204':
+          description: The event was recorded.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid, e.g. a dynamic-variable type is invalid or a default value has an incorrect type.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    CustomAttributes:
+      name: attributes
+      in: query
+      required: false
+      description: JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests.
+      schema:
+        type: string
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      description: The Apptimize user (customer) identifier the assignment is scoped to.
+      schema:
+        type: string
+  securitySchemes:
+    ApptimizeApiToken:
+      type: apiKey
+      in: header
+      name: ApptimizeApiToken
+      description: Apptimize API Token from the dashboard Install page. Distinct from the App Key used with the SDKs.

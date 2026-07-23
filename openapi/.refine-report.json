@@ -1,0 +1,16 @@
+{
+  "provider": "apptimize",
+  "sources": [
+    "apptimize-events-api-openapi.yml",
+    "apptimize-experiments-api-openapi.yml"
+  ],
+  "outputs": [
+    "apptimize-events-api-openapi.yml",
+    "apptimize-experiments-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

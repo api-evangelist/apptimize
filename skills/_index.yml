@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/apptimize-rest-api-openapi.yml
+skills:
+  - file: apptimize-resolve-experiments.md
+    name: Resolve Apptimize experiments for a user
+    api: openapi/apptimize-rest-api-openapi.yml
+    operations: [getVariantInfo, getCodeBlock, getDynamicVariable, getFeatureFlag]
+  - file: apptimize-track-event.md
+    name: Track an Apptimize event for a user
+    api: openapi/apptimize-rest-api-openapi.yml
+    operations: [trackEvent]

@@ -1,0 +1,41 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/apptimize-rest-api-openapi.yml
+entities:
+  - name: User
+    description: The customer/device identifier that assignments and events are scoped to.
+    id_field: user-id
+  - name: CodeBlock
+    description: A code-block variable whose variant is resolved per user.
+    key_field: code-block-variable-name
+  - name: DynamicVariable
+    description: A typed variable whose value is resolved per user experiment.
+    key_field: dynamic-variable-name
+  - name: FeatureFlag
+    description: A feature flag whose enabled state is resolved per user.
+    key_field: feature-flag-variable-name
+  - name: VariantInfo
+    description: The full set of experiment/variant assignments for a user.
+  - name: Event
+    description: A named event tracked for a user, used as an experiment goal.
+    key_field: event-name
+relationships:
+  - from: User
+    to: CodeBlock
+    type: has_many
+    via: code-block-variable-name
+  - from: User
+    to: DynamicVariable
+    type: has_many
+    via: dynamic-variable-name
+  - from: User
+    to: FeatureFlag
+    type: has_many
+    via: feature-flag-variable-name
+  - from: User
+    to: VariantInfo
+    type: has_one
+  - from: User
+    to: Event
+    type: has_many
+    via: event-name

@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/apptimize-rest-api-openapi.yml
+server:
+  name: apptimize
+  transport: http
+  url: null
+notes: >-
+  No official hosted/remote Apptimize MCP server was found. This is a candidate
+  tool list derived one-to-one from the documented REST API operations.
+tools:
+  - name: get_code_block
+    description: Get the code-block variant assigned to a user.
+    source_operation: openapi/apptimize-rest-api-openapi.yml#getCodeBlock
+  - name: get_dynamic_variable
+    description: Get the resolved value of a dynamic variable for a user.
+    source_operation: openapi/apptimize-rest-api-openapi.yml#getDynamicVariable
+  - name: get_feature_flag
+    description: Get whether a feature flag is enabled for a user.
+    source_operation: openapi/apptimize-rest-api-openapi.yml#getFeatureFlag
+  - name: get_variant_info
+    description: Get all variant assignments in effect for a user.
+    source_operation: openapi/apptimize-rest-api-openapi.yml#getVariantInfo
+  - name: track_event
+    description: Record a named event for a user (experiment/feature-flag goal).
+    source_operation: openapi/apptimize-rest-api-openapi.yml#trackEvent

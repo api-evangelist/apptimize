@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/apptimize-rest-api-openapi.yml
+format: json
+envelope: '{ "message": "..." }'
+notes: >-
+  Derived from the documented REST API responses. Apptimize does not publish an
+  RFC 9457 problem+json error catalog; the API returns a plain JSON error body
+  with a message. A successful event POST returns 204 No Content.
+problems:
+  - status: 400
+    title: Bad Request
+    description: >-
+      The request was invalid. Documented triggers include an invalid
+      dynamic-variable type or a default value with an incorrect type.
+    remediation: >-
+      Ensure the type path segment matches the dynamic variable's declared type
+      and that any default value has the correct type.
+    source_operations:
+      - openapi/apptimize-rest-api-openapi.yml#getCodeBlock
+      - openapi/apptimize-rest-api-openapi.yml#getDynamicVariable
+      - openapi/apptimize-rest-api-openapi.yml#getFeatureFlag
+      - openapi/apptimize-rest-api-openapi.yml#getVariantInfo
+      - openapi/apptimize-rest-api-openapi.yml#trackEvent

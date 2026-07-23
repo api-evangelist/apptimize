@@ -1,0 +1,192 @@
+openapi: 3.1.0
+info:
+  title: Apptimize REST Events Experiments API
+  version: v1
+  description: The Apptimize REST API lets any device or server participate in Apptimize A/B experiments and feature flags without an embedded SDK. The Experiments endpoints retrieve variant assignments (code blocks, dynamic variables, feature flags, and full variant info) for a given user, and the Events endpoint tracks user events used as experiment goals. Authentication uses an Apptimize API Token supplied in the ApptimizeApiToken header; this token is obtained from the Apptimize dashboard Install page and is distinct from the App Key used with the client/server SDKs.
+  contact:
+    name: Apptimize Support
+    email: support@apptimize.com
+    url: https://apptimize.com/docs/apis/rest-api.html
+  x-apptimize-status: Apptimize was acquired by Airship in 2019; the developer documentation and SDKs remain published at apptimize.com/docs.
+servers:
+- url: https://api.apptimize.com
+  description: North America
+- url: https://api.apptimize.eu
+  description: Europe
+security:
+- ApptimizeApiToken: []
+tags:
+- name: Experiments
+  description: Retrieve variant assignments and experiment data for a user.
+paths:
+  /v1/users/{user-id}/code-blocks/{code-block-variable-name}:
+    get:
+      operationId: getCodeBlock
+      summary: Get code-block variant for a user
+      description: Returns which code-block variant is assigned to the given user for the named code-block variable, based on the user's experiment participation.
+      tags:
+      - Experiments
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - name: code-block-variable-name
+        in: path
+        required: true
+        description: The name of the code-block variable defined in Apptimize.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/CustomAttributes'
+      responses:
+        '200':
+          description: The variant assignment for the code-block variable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariantAssignment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /v1/users/{user-id}/dynamic-variables/{type}/{dynamic-variable-name}:
+    get:
+      operationId: getDynamicVariable
+      summary: Get dynamic-variable value for a user
+      description: Returns the value of the named dynamic variable for the given user, resolving any experiment variant the user is enrolled in. The type path segment declares the expected value type; a mismatched type or default yields a 400.
+      tags:
+      - Experiments
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - name: type
+        in: path
+        required: true
+        description: The declared type of the dynamic variable (e.g. string, integer, boolean, double, array, dictionary).
+        schema:
+          type: string
+      - name: dynamic-variable-name
+        in: path
+        required: true
+        description: The name of the dynamic variable defined in Apptimize.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/CustomAttributes'
+      responses:
+        '200':
+          description: The resolved dynamic-variable value.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DynamicVariableValue'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /v1/users/{user-id}/feature-flags/{feature-flag-variable-name}:
+    get:
+      operationId: getFeatureFlag
+      summary: Get feature-flag state for a user
+      description: Returns whether the named feature flag is enabled for the given user, honoring the flag's rollout and targeting rules.
+      tags:
+      - Experiments
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - name: feature-flag-variable-name
+        in: path
+        required: true
+        description: The name of the feature-flag variable defined in Apptimize.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/CustomAttributes'
+      responses:
+        '200':
+          description: The feature-flag state for the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureFlagState'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /v1/users/{user-id}/variant-info:
+    get:
+      operationId: getVariantInfo
+      summary: Get all variant assignments for a user
+      description: Returns the full set of experiment and variant assignments currently in effect for the given user.
+      tags:
+      - Experiments
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/CustomAttributes'
+      responses:
+        '200':
+          description: All variant assignments for the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariantInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    DynamicVariableValue:
+      type: object
+      description: The resolved value of a dynamic variable for a user.
+      properties:
+        variableName:
+          type: string
+        type:
+          type: string
+        value: {}
+    FeatureFlagState:
+      type: object
+      description: Whether a feature flag is enabled for a user.
+      properties:
+        variableName:
+          type: string
+        enabled:
+          type: boolean
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
+    VariantAssignment:
+      type: object
+      description: The variant a user is assigned for a code-block variable.
+      properties:
+        variableName:
+          type: string
+        variant:
+          type: string
+    VariantInfo:
+      type: object
+      description: The full set of variant assignments for a user.
+      properties:
+        userId:
+          type: string
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantAssignment'
+  parameters:
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      description: The Apptimize user (customer) identifier the assignment is scoped to.
+      schema:
+        type: string
+    CustomAttributes:
+      name: attributes
+      in: query
+      required: false
+      description: JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests.
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: The request was invalid, e.g. a dynamic-variable type is invalid or a default value has an incorrect type.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApptimizeApiToken:
+      type: apiKey
+      in: header
+      name: ApptimizeApiToken
+      description: Apptimize API Token from the dashboard Install page. Distinct from the App Key used with the SDKs.

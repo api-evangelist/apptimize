@@ -1,0 +1,60 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://apptimize.com/docs/apis/rest-api.html and
+  openapi/apptimize-rest-api-openapi.yml
+authentication:
+  style: api-key-header
+  header: ApptimizeApiToken
+  ref: authentication/apptimize-authentication.yml
+  notes: >-
+    Single API Token in the ApptimizeApiToken header. The SDKs instead use an
+    App Key at initialization.
+regions:
+  style: host-based
+  hosts:
+    - region: North America
+      base: https://api.apptimize.com
+    - region: Europe
+      base: https://api.apptimize.eu
+context_headers:
+  description: >-
+    Optional headers supply application/device context used for experiment
+    targeting and reporting.
+  headers:
+    - ApptimizeApplicationName
+    - ApptimizeApplicationVersion
+    - ApptimizeOperatingSystem
+    - ApptimizeOperatingSystemVersion
+    - ApptimizePilotTargetingId
+custom_attributes:
+  description: >-
+    Custom user attributes for targeting are passed as JSON. On GET requests
+    they are sent as query parameters; on the event POST they are sent as form
+    fields.
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header or contract is documented. Experiment-assignment
+    GETs are naturally read-only/repeatable; the event POST is an at-least-once
+    tracking call with no dedup key.
+pagination:
+  supported: false
+  notes: All endpoints are per-user single-resource lookups; no list pagination.
+versioning:
+  style: uri-path
+  current: v1
+  ref: lifecycle/apptimize-lifecycle.yml
+error_envelope:
+  format: json
+  content_type: application/json
+  shape: '{ "message": "..." }'
+  ref: errors/apptimize-problem-types.yml
+  notes: >-
+    A 400 Bad Request is returned for invalid dynamic-variable types or
+    incorrectly typed defaults. Not RFC 9457 problem+json.
+success_semantics:
+  event_track: 204 No Content on a successful event POST
+rate_limits:
+  documented: false
+  notes: No published rate-limit policy or rate-limit response headers.

@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Apptimize REST API
+  version: 1.0.0
+extends: openapi/apptimize-rest-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-18'
+      x-apptimize-acquired-by: Airship
+      x-apptimize-acquired-year: 2019
+  - target: $.info
+    update:
+      x-artifacts:
+        authentication: authentication/apptimize-authentication.yml
+        conventions: conventions/apptimize-conventions.yml
+        errors: errors/apptimize-problem-types.yml
+        lifecycle: lifecycle/apptimize-lifecycle.yml
+        data-model: data-model/apptimize-data-model.yml
+        packages: packages/apptimize-packages.yml
+        mcp: mcp/apptimize-mcp.yml
+  - target: $.servers
+    update:
+      - url: https://api.apptimize.com
+        description: North America
+      - url: https://api.apptimize.eu
+        description: Europe
