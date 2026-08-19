@@ -1,0 +1,305 @@
+{
+  "item": [
+    {
+      "id": "f52015f4-fc19-4f76-a1db-55ff3d8a5362",
+      "name": "Events",
+      "description": {
+        "content": "Track user events used as experiment and feature-flag goals.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f80be34e-b1e1-4ff9-99b6-955391caafc6",
+          "name": "Track an event for a user",
+          "request": {
+            "name": "Track an event for a user",
+            "description": {
+              "content": "Records a named event for the given user. Events are used as goals for experiments and feature flags. Returns 204 No Content on success.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":user-id",
+                "events",
+                ":event-name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "attributes",
+                  "value": "<string>",
+                  "description": "JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user-id",
+                  "description": "(Required) The Apptimize user (customer) identifier the assignment is scoped to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "event-name",
+                  "description": "(Required) The name of the event to record."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "<number>",
+                  "description": "Optional numeric value associated with the event."
+                },
+                {
+                  "disabled": false,
+                  "key": "attributes",
+                  "value": "<string>",
+                  "description": "JSON object of custom user attributes."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f377d40e-3fb7-492a-ba37-056e37ca3397",
+              "name": "The event was recorded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":user-id",
+                    "events",
+                    ":event-name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user-id",
+                      "description": "(Required) The Apptimize user (customer) identifier the assignment is scoped to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event-name",
+                      "description": "(Required) The name of the event to record."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApptimizeApiToken",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional numeric value associated with the event.",
+                        "type": "text/plain"
+                      },
+                      "key": "value",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "JSON object of custom user attributes.",
+                        "type": "text/plain"
+                      },
+                      "key": "attributes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1485cf62-0e08-4e43-8519-364631b06e28",
+              "name": "The request was invalid, e.g. a dynamic-variable type is invalid or a default value has an incorrect type.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":user-id",
+                    "events",
+                    ":event-name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user-id",
+                      "description": "(Required) The Apptimize user (customer) identifier the assignment is scoped to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event-name",
+                      "description": "(Required) The name of the event to record."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "ApptimizeApiToken",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional numeric value associated with the event.",
+                        "type": "text/plain"
+                      },
+                      "key": "value",
+                      "value": "<number>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "JSON object of custom user attributes.",
+                        "type": "text/plain"
+                      },
+                      "key": "attributes",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.apptimize.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "ApptimizeApiToken"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "22d0d18b-b1db-460d-8337-8a955ffe4874",
+    "name": "Apptimize REST Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Apptimize REST API lets any device or server participate in Apptimize A/B experiments and feature flags without an embedded SDK. The Experiments endpoints retrieve variant assignments (code blocks, dynamic variables, feature flags, and full variant info) for a given user, and the Events endpoint tracks user events used as experiment goals. Authentication uses an Apptimize API Token supplied in the ApptimizeApiToken header; this token is obtained from the Apptimize dashboard Install page and is distinct from the App Key used with the client/server SDKs.\n\nContact Support:\n Name: Apptimize Support\n Email: support@apptimize.com",
+      "type": "text/plain"
+    }
+  }
+}

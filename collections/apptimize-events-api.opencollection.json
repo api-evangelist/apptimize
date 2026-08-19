@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apptimize REST Events API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApptimizeApiToken",
+      "value": "{{ApptimizeApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Track an event for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.apptimize.com/v1/users/:user-id/events/:event-name",
+            "params": [
+              {
+                "name": "user-id",
+                "value": "",
+                "type": "path",
+                "description": "The Apptimize user (customer) identifier the assignment is scoped to."
+              },
+              {
+                "name": "event-name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the event to record."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "value",
+                  "value": ""
+                },
+                {
+                  "name": "attributes",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Records a named event for the given user. Events are used as goals for experiments and feature flags. Returns 204 No Content on success."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apptimize REST Events Experiments API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "ApptimizeApiToken",
+      "value": "{{ApptimizeApiToken}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experiments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get code-block variant for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apptimize.com/v1/users/:user-id/code-blocks/:code-block-variable-name",
+            "params": [
+              {
+                "name": "user-id",
+                "value": "",
+                "type": "path",
+                "description": "The Apptimize user (customer) identifier the assignment is scoped to."
+              },
+              {
+                "name": "code-block-variable-name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the code-block variable defined in Apptimize."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests."
+              }
+            ]
+          },
+          "docs": "Returns which code-block variant is assigned to the given user for the named code-block variable, based on the user's experiment participation."
+        },
+        {
+          "info": {
+            "name": "Get dynamic-variable value for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apptimize.com/v1/users/:user-id/dynamic-variables/:type/:dynamic-variable-name",
+            "params": [
+              {
+                "name": "user-id",
+                "value": "",
+                "type": "path",
+                "description": "The Apptimize user (customer) identifier the assignment is scoped to."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The declared type of the dynamic variable (e.g. string, integer, boolean, double, array, dictionary)."
+              },
+              {
+                "name": "dynamic-variable-name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the dynamic variable defined in Apptimize."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests."
+              }
+            ]
+          },
+          "docs": "Returns the value of the named dynamic variable for the given user, resolving any experiment variant the user is enrolled in. The type path segment declares the expected value type; a mismatched type or default yields a 400."
+        },
+        {
+          "info": {
+            "name": "Get feature-flag state for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apptimize.com/v1/users/:user-id/feature-flags/:feature-flag-variable-name",
+            "params": [
+              {
+                "name": "user-id",
+                "value": "",
+                "type": "path",
+                "description": "The Apptimize user (customer) identifier the assignment is scoped to."
+              },
+              {
+                "name": "feature-flag-variable-name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the feature-flag variable defined in Apptimize."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests."
+              }
+            ]
+          },
+          "docs": "Returns whether the named feature flag is enabled for the given user, honoring the flag's rollout and targeting rules."
+        },
+        {
+          "info": {
+            "name": "Get all variant assignments for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.apptimize.com/v1/users/:user-id/variant-info",
+            "params": [
+              {
+                "name": "user-id",
+                "value": "",
+                "type": "path",
+                "description": "The Apptimize user (customer) identifier the assignment is scoped to."
+              },
+              {
+                "name": "attributes",
+                "value": "",
+                "type": "query",
+                "description": "JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests."
+              }
+            ]
+          },
+          "docs": "Returns the full set of experiment and variant assignments currently in effect for the given user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
