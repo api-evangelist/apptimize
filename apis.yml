@@ -52,6 +52,8 @@ apis:
   humanURL: https://apptimize.com/docs/apis/rest-api.html
   baseURL: https://api.apptimize.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
