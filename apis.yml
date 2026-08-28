@@ -12,6 +12,17 @@ description: >-
   was acquired by Airship in 2019; its developer documentation and SDKs remain
   published at apptimize.com/docs, and the marketing site now redirects to
   airship.com.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
