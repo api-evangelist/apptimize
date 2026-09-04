@@ -25,15 +25,17 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Unknown
+  confidence: low
   source:
   - authentication
-  generated: '2026-07-22'
+  - security
+  - {url: 'http://apptimize.com', status: 301, note: 'declared website redirects to https://www.airship.com/?utm_source=apptimize — a different registrable domain (apptimize.com -> airship.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
+  generated: '2026-09-03'
   method: derived
 image: https://apptimize.com/favicon.ico
 url: https://raw.githubusercontent.com/api-evangelist/apptimize/refs/heads/main/apis.yml
@@ -118,8 +120,9 @@ common:
   url: errors/apptimize-problem-types.yml
 - type: Lifecycle
   url: lifecycle/apptimize-lifecycle.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/apptimize-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/apptimize-llms.txt
 - type: Conformance
