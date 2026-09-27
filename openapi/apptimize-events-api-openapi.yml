@@ -55,21 +55,6 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
-  parameters:
-    CustomAttributes:
-      name: attributes
-      in: query
-      required: false
-      description: JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests.
-      schema:
-        type: string
-    UserId:
-      name: user-id
-      in: path
-      required: true
-      description: The Apptimize user (customer) identifier the assignment is scoped to.
-      schema:
-        type: string
   schemas:
     Error:
       type: object
@@ -84,6 +69,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      description: The Apptimize user (customer) identifier the assignment is scoped to.
+      schema:
+        type: string
+    CustomAttributes:
+      name: attributes
+      in: query
+      required: false
+      description: JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests.
+      schema:
+        type: string
   securitySchemes:
     ApptimizeApiToken:
       type: apiKey

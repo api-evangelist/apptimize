@@ -120,15 +120,14 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
+  responses:
+    BadRequest:
+      description: The request was invalid, e.g. a dynamic-variable type is invalid or a default value has an incorrect type.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    FeatureFlagState:
-      type: object
-      description: Whether a feature flag is enabled for a user.
-      properties:
-        variableName:
-          type: string
-        enabled:
-          type: boolean
     DynamicVariableValue:
       type: object
       description: The resolved value of a dynamic variable for a user.
@@ -138,6 +137,12 @@ components:
         type:
           type: string
         value: {}
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
     VariantAssignment:
       type: object
       description: The variant a user is assigned for a code-block variable.
@@ -145,12 +150,6 @@ components:
         variableName:
           type: string
         variant:
-          type: string
-    Error:
-      type: object
-      description: An error response.
-      properties:
-        message:
           type: string
     VariantInfo:
       type: object
@@ -162,26 +161,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VariantAssignment'
-  responses:
-    BadRequest:
-      description: The request was invalid, e.g. a dynamic-variable type is invalid or a default value has an incorrect type.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    FeatureFlagState:
+      type: object
+      description: Whether a feature flag is enabled for a user.
+      properties:
+        variableName:
+          type: string
+        enabled:
+          type: boolean
   parameters:
-    UserId:
-      name: user-id
-      in: path
-      required: true
-      description: The Apptimize user (customer) identifier the assignment is scoped to.
-      schema:
-        type: string
     CustomAttributes:
       name: attributes
       in: query
       required: false
       description: JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests.
+      schema:
+        type: string
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      description: The Apptimize user (customer) identifier the assignment is scoped to.
       schema:
         type: string
   securitySchemes:
