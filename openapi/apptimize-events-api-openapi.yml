@@ -55,20 +55,6 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
-  schemas:
-    Error:
-      type: object
-      description: An error response.
-      properties:
-        message:
-          type: string
-  responses:
-    BadRequest:
-      description: The request was invalid, e.g. a dynamic-variable type is invalid or a default value has an incorrect type.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     UserId:
       name: user-id
@@ -84,6 +70,20 @@ components:
       description: JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests.
       schema:
         type: string
+  responses:
+    BadRequest:
+      description: The request was invalid, e.g. a dynamic-variable type is invalid or a default value has an incorrect type.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
   securitySchemes:
     ApptimizeApiToken:
       type: apiKey
