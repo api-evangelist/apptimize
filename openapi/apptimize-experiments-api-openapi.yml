@@ -121,6 +121,29 @@ paths:
           $ref: '#/components/responses/BadRequest'
 components:
   schemas:
+    VariantAssignment:
+      type: object
+      description: The variant a user is assigned for a code-block variable.
+      properties:
+        variableName:
+          type: string
+        variant:
+          type: string
+    Error:
+      type: object
+      description: An error response.
+      properties:
+        message:
+          type: string
+    DynamicVariableValue:
+      type: object
+      description: The resolved value of a dynamic variable for a user.
+      properties:
+        variableName:
+          type: string
+        type:
+          type: string
+        value: {}
     VariantInfo:
       type: object
       description: The full set of variant assignments for a user.
@@ -139,42 +162,19 @@ components:
           type: string
         enabled:
           type: boolean
-    DynamicVariableValue:
-      type: object
-      description: The resolved value of a dynamic variable for a user.
-      properties:
-        variableName:
-          type: string
-        type:
-          type: string
-        value: {}
-    Error:
-      type: object
-      description: An error response.
-      properties:
-        message:
-          type: string
-    VariantAssignment:
-      type: object
-      description: The variant a user is assigned for a code-block variable.
-      properties:
-        variableName:
-          type: string
-        variant:
-          type: string
   parameters:
-    UserId:
-      name: user-id
-      in: path
-      required: true
-      description: The Apptimize user (customer) identifier the assignment is scoped to.
-      schema:
-        type: string
     CustomAttributes:
       name: attributes
       in: query
       required: false
       description: JSON object of custom user attributes used for experiment targeting, passed as query parameters on GET requests.
+      schema:
+        type: string
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      description: The Apptimize user (customer) identifier the assignment is scoped to.
       schema:
         type: string
   responses:
